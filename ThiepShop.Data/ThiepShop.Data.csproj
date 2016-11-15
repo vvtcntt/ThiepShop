@@ -111,7 +111,6 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />
     <Compile Include="Repositories\WebRepository.cs" />
-    <Compile Include="ThiepShopDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
