@@ -49,7 +49,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201611150911506_initialDatabase.cs" />
+    <Compile Include="Migrations\201611150911506_initialDatabase.Designer.cs">
+      <DependentUpon>201611150911506_initialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AgencyRepository.cs" />
+    <Compile Include="Repositories\BanksRepository.cs" />
+    <Compile Include="Repositories\ColorProductRepository.cs" />
+    <Compile Include="Repositories\CompetitorHomesRepository.cs" />
+    <Compile Include="Repositories\CompetitorLinkRepository.cs" />
+    <Compile Include="Repositories\CompetitorRepository.cs" />
+    <Compile Include="Repositories\ConfigRepository.cs" />
+    <Compile Include="Repositories\ConnectColorProductRepository.cs" />
+    <Compile Include="Repositories\ConnectCriteriaRepository.cs" />
+    <Compile Include="Repositories\ConnectGroupRepository.cs" />
+    <Compile Include="Repositories\ConnectImagesRepository.cs" />
+    <Compile Include="Repositories\ConnectMenuProductRepository.cs" />
+    <Compile Include="Repositories\ConnectNewsRepository.cs" />
+    <Compile Include="Repositories\ConnectWebsRepository.cs" />
+    <Compile Include="Repositories\ContactRepository.cs" />
+    <Compile Include="Repositories\CriteriaRepository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FilesRepository.cs" />
+    <Compile Include="Repositories\GroupAgencyRepository.cs" />
+    <Compile Include="Repositories\GroupChildRepository.cs" />
+    <Compile Include="Repositories\GroupImageRepository.cs" />
+    <Compile Include="Repositories\GroupNewsRepository.cs" />
+    <Compile Include="Repositories\GroupProductRepository.cs" />
+    <Compile Include="Repositories\HistoryLoginRepository.cs" />
+    <Compile Include="Repositories\HotlineRepository.cs" />
+    <Compile Include="Repositories\ImageProductRepository.cs" />
+    <Compile Include="Repositories\ImagesRepository.cs" />
+    <Compile Include="Repositories\InfoCriteriaRepository.cs" />
+    <Compile Include="Repositories\ManufacturesRepository.cs" />
+    <Compile Include="Repositories\MapsRepository.cs" />
+    <Compile Include="Repositories\ModuleRepository.cs" />
+    <Compile Include="Repositories\NewsRepository.cs" />
+    <Compile Include="Repositories\OrderDetailRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\PartnerRepository.cs" />
+    <Compile Include="Repositories\ProductCheckRepository.cs" />
+    <Compile Include="Repositories\ProductConnectRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductSaleRepository.cs" />
+    <Compile Include="Repositories\ProductSynRepository.cs" />
+    <Compile Include="Repositories\ProductTagsRepository.cs" />
+    <Compile Include="Repositories\RegisterRepository.cs" />
+    <Compile Include="Repositories\RightRepository.cs" />
+    <Compile Include="Repositories\SupportRepository.cs" />
+    <Compile Include="Repositories\TagsRepository.cs" />
+    <Compile Include="Repositories\UrlRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VideoRepository.cs" />
+    <Compile Include="Repositories\WebRepository.cs" />
+    <Compile Include="ThiepShopDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -60,6 +122,15 @@
       <Project>{a1f4e50b-e6a2-47ac-8809-1e81d85fda64}</Project>
       <Name>ThiepShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThiepShop.Model\ThiepShop.Model.csproj">
+      <Project>{9d7d230e-a0e0-4c1e-8f1d-04b32e853a1b}</Project>
+      <Name>ThiepShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611150911506_initialDatabase.resx">
+      <DependentUpon>201611150911506_initialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
