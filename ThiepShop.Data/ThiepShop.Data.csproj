@@ -56,9 +56,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201611150911506_initialDatabase.cs" />
-    <Compile Include="Migrations\201611150911506_initialDatabase.Designer.cs">
-      <DependentUpon>201611150911506_initialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201611160823448_initialDatabase.cs" />
+    <Compile Include="Migrations\201611160823448_initialDatabase.Designer.cs">
+      <DependentUpon>201611160823448_initialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />
     <Compile Include="Repositories\WebRepository.cs" />
+    <Compile Include="ThiepShopDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,8 +128,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611150911506_initialDatabase.resx">
-      <DependentUpon>201611150911506_initialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611160823448_initialDatabase.resx">
+      <DependentUpon>201611160823448_initialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
