@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,20 +9,19 @@ using ThiepShop.Model.Model;
 
 namespace ThiepShop.Data
 {
-    public class ThiepShopDbContext:DbContext
+    public class ThiepShopDbContext: IdentityDbContext<ApplicationUser>
     {
         public ThiepShopDbContext()
             : base("ThiepShopConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-        public static ThiepShopDbContext Create()
-        {
-            return new ThiepShopDbContext();
-        }
+         
         protected override void OnModelCreating(DbModelBuilder buider)
         {
-          
+            buider.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            buider.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+
         }
         public DbSet<Product> Products { set; get; }
         public DbSet<Agency> Agencys { set; get; }
@@ -72,6 +72,9 @@ namespace ThiepShop.Data
         public DbSet<Error> Errors { set; get; }
         public DbSet<ProductTags> ProductTags { set; get; }
         public DbSet<Tags> Tags { set; get; }
-        
+        public static ThiepShopDbContext Create()
+        {
+            return new ThiepShopDbContext();
+        }
     }
 }

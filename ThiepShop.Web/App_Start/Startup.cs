@@ -12,17 +12,21 @@ using System.Web.Http;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using ThiepShop.Data;
+using ThiepShop.Model.Model;
+using System.Web;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity;
 
 [assembly: OwinStartup(typeof(ThiepShop.Web.App_Start.Startup))]
 
 namespace ThiepShop.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
-           
+            ConfigureAuth(app);
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
         }
         private void ConfigAutofac(IAppBuilder app)
@@ -34,6 +38,13 @@ namespace ThiepShop.Web.App_Start
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
             builder.RegisterType<ThiepShopDbContext>().AsSelf().InstancePerRequest();
+            //Asp.net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+
             // Repositories
             builder.RegisterAssemblyTypes(typeof(GroupProductRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
