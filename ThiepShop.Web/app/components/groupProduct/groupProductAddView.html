@@ -1,0 +1,119 @@
+﻿<section class="content-header">
+    <h1>
+      Danh mục sản phẩm
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="groupProduct">Danh mục sản phẩm</a></li>
+        <li class="active">Thêm mới sản phẩm</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới danh mục sản phẩm</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" name="frmAddGroupProduct" role="form" ng-submit="addGroupProduct()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Danh mục cha</label>
+                    <div class="col-sm-6">
+                        <select type="text" name="ParentID" class="form-control" ng-model="groupProduct.ParentID">
+                            <option value="">-- Chọn chuyên mục cha --</option>
+                            <option ng-repeat="item in flatFolders" ng-value="{{item.id }}" value="{{item.id }}">
+                                {{ item.indent }} {{ item.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <input name="ParentID" type="hidden" ng-model="groupProduct.ParentID" />
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" ng-model="groupProduct.Name" placeholder="Tên danh mục">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                    <textarea class="form-control" name="description"  ng-model="groupProduct.Description" placeholder="Nhập mô tả" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" ng-model="groupProduct.Content" placeholder="Nhập nội dung"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Màu sắc</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="color" ng-model="groupProduct.Color" placeholder="Nhập màu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Ảnh đại diện</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="images" ng-model="groupProduct.Images" placeholder="Chọn ảnh đại diện">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">iCon</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="icon" ng-model="groupProduct.iCon" placeholder="Chọn iConsss">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Ảnh nền</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="backgound" ng-model="groupProduct.Background" placeholder="Chọn ảnh nền">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title" ng-model="groupProduct.Title" placeholder="Nhập Meta Title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="keyword" ng-model="groupProduct.Keyword" placeholder="Nhập từ khóa"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="ord" ng-model="groupProduct.Ord"  >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hiển thị</label>
+                    <div class="col-sm-10">
+                        <label class="control-label"> <input type="checkbox" name="action" ng-model="groupProduct.Active" ng-checked="groupProduct.Active" checked />  kích hoạt</label>
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hiển thị trang chủ</label>
+                    <div class="col-sm-10">
+                        <label class="control-label"> <input type="checkbox" ng-model="groupProduct.Priority" name="priority" ng-checked="groupProduct.Priority" />  Hiển thị trang chủ</label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-default" ui-sref="groupProduct" >Hủy</button>
+                <button type="submit" class="btn btn-success pull-right">Lưu</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+    <!-- /.box -->
+    <!-- /.box -->
+</section>
+ 

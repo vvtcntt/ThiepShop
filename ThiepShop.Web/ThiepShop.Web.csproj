@@ -218,6 +218,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\groupProduct\groupProduct.module.js" />
+    <Content Include="app\components\groupProduct\groupProductAddController.js" />
+    <Content Include="app\components\groupProduct\groupProductAddView.html" />
+    <Content Include="app\components\groupProduct\groupProductEditController.js" />
+    <Content Include="app\components\groupProduct\groupProductEditView.html" />
+    <Content Include="app\components\groupProduct\groupProductListController.js" />
+    <Content Include="app\components\groupProduct\groupProductListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\products\product.module.js" />
@@ -227,7 +234,13 @@
     <Content Include="app\components\products\productEditView.html" />
     <Content Include="app\components\products\productListController.js" />
     <Content Include="app\components\products\productListView.html" />
+    <Content Include="app\shared\directives\pagerDirective.html" />
+    <Content Include="app\shared\directives\pagerDirective.js" />
+    <Content Include="app\shared\filters\activeFilter.js" />
     <Content Include="app\shared\modules\thiepShop.common.js" />
+    <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\commonService.js" />
+    <Content Include="app\shared\services\notificationService.js" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
@@ -473,6 +486,10 @@
     <Content Include="Assets\admin\libs\slimscroll\examples\style.css" />
     <Content Include="Assets\admin\libs\slimscroll\jquery.slimscroll.js" />
     <Content Include="Assets\admin\libs\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\admin\libs\toastr\toastr.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js" />
+    <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -493,13 +510,11 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\groupProduct\" />
     <Folder Include="app\components\order\" />
     <Folder Include="app\components\roles\" />
     <Folder Include="app\components\user\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
-    <Folder Include="app\shared\services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\client\" />
   </ItemGroup>
@@ -634,6 +649,13 @@
     <Content Include="Assets\admin\libs\slimscroll\bower.json" />
     <Content Include="Assets\admin\libs\slimscroll\package.json" />
     <Content Include="Assets\admin\libs\slimscroll\README.md" />
+    <Content Include="Assets\admin\libs\toastr\.bower.json" />
+    <Content Include="Assets\admin\libs\toastr\bower.json" />
+    <Content Include="Assets\admin\libs\toastr\LICENSE" />
+    <Content Include="Assets\admin\libs\toastr\README.md" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js.map" />
+    <Content Include="Assets\admin\libs\toastr\toastr.less" />
+    <Content Include="Assets\admin\libs\toastr\toastr.scss" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>

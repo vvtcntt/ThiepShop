@@ -2,6 +2,7 @@
 (function () {
     angular.module('thiepshop',
         ['thiepshop.products',
+            'thiepshop.groupProduct',
          'thiepshop.common'])
         .config(config);
 

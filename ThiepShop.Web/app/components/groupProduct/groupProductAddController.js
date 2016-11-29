@@ -1,0 +1,71 @@
+﻿(function (app) {
+    app.controller('groupProductAddController', groupProductAddController);
+    groupProductAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'commonService', '$stateParams'];
+    function groupProductAddController($scope, apiService, notificationService, $state, commonService, $stateParams) {
+        $scope.groupProduct = {
+            DateCreate: new Date,
+            Active: true,
+            Priority: false,
+            idUser: '1',         
+            Level: '1'        
+           
+        }
+        $scope.GetTagSeo = GetTagSeo;
+        function GetTagSeo() {
+            $scope.groupProduct.Tag = commonService.getSeoTitle($scope.groupProduct.Name);
+
+        }
+
+        function getOrd() {
+            apiService.get('/api/GroupProduct/GetOrd', null, function (result) {
+                $scope.groupProduct.Ord = result.data;
+            });
+        }
+        //Load Style Dropdownlist
+        function times(n, str) {
+            var result = '';
+            for (var i = 0; i < n; i++) {
+                result += str;
+            }
+            return result;
+        };
+
+        function recur(item, level, arr) {
+            arr.push({
+                name: item.Name,
+                id: item.id,
+                level: level,
+                indent: times(level, '–')
+            });
+
+            if (item.children) {
+                item.children.forEach(function (item) {
+                    recur(item, level + 1, arr);
+                });
+            }
+        };
+        $scope.parentGroupProduct = [];
+        $scope.flatFolders = [];
+        function loadParentGroupProduct() {
+            apiService.get('/api/GroupProduct/getallParent', null, function (result) {
+                $scope.parentGroupProduct = commonService.getTree(result.data, 'id', 'ParentID');
+                $scope.parentGroupProduct.forEach(function (item) {
+                    recur(item, 0, $scope.flatFolders);
+                });
+ 
+            });
+        }
+        $scope.addGroupProduct = addGroupProduct;
+        function addGroupProduct() {
+            apiService.post('/api/groupproduct/create', $scope.groupProduct, function (result)
+            {
+                notificationService.displaySuccess(result.data.Name + ' đã được thêm mới');
+                $state.go('groupProduct');
+            }, function (error) {
+                notificationService.displayError('Thêm mới không thành công !');
+            });
+        }
+        getOrd(); GetTagSeo();
+        loadParentGroupProduct();
+    }
+})(angular.module('thiepshop.groupProduct'));
