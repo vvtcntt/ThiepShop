@@ -124,7 +124,31 @@ namespace ThiepShop.Web.Api
                 return response;
             });
         }
-         
+        [Route("updateMenu")]
+        [HttpPut]
+        public HttpResponseMessage updateMenu(HttpRequestMessage request, GroupProductViewModel groupProductVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newGroupProduct = _groupProductService.GetById(groupProductVm.id);
+                    newGroupProduct.UpdateGroupProduct(groupProductVm);
+                    newGroupProduct.DateCreate = DateTime.Now;
+
+                    _groupProductService.Update(newGroupProduct);
+                    _groupProductService.Save();
+                    var responseData = Mapper.Map<GroupProduct, GroupProductViewModel>(newGroupProduct);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
         [Route("GetOrd")]
         [HttpGet]
         public HttpResponseMessage GetOrd(HttpRequestMessage request)
