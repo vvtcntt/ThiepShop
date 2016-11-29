@@ -1,0 +1,17 @@
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Service.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Service.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Common.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Data.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Model.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Common.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Data.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\ThiepShop.Model.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\obj\Debug\ThiepShop.Service.csprojResolveAssemblyReference.cache
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\obj\Debug\ThiepShop.Service.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\obj\Debug\ThiepShop.Service.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\EntityFramework.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\EntityFramework.xml
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Service\bin\Debug\Microsoft.AspNet.Identity.Core.xml

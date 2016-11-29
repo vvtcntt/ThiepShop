@@ -1,0 +1,4 @@
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Common\bin\Debug\ThiepShop.Common.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Common\bin\Debug\ThiepShop.Common.pdb
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Common\obj\Debug\ThiepShop.Common.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Common\obj\Debug\ThiepShop.Common.pdb
