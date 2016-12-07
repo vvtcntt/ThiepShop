@@ -18,12 +18,12 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" name="frmEditGroupProduct" role="form" ng-submit="updateGroupProduct()">
+        <form class="form-horizontal" name="frmEditGroupProduct" novalidate role="form" ng-submit="updateGroupProduct()">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Danh mục cha</label>
                     <div class="col-sm-10">
-                        <select type="text" name="ParentID" class="form-control" ng-model="groupProduct.ParentID">
+                        <select name="ParentID" class="form-control" ng-model="groupProduct.ParentID">
                             <option value="">-- Chọn chuyên mục cha --</option>
                             <option ng-repeat="item in flatFolders" ng-value="{{item.id }}" value="{{item.id }}">
                                 {{ item.indent }} {{ item.name }}
@@ -35,19 +35,25 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" ng-model="groupProduct.Name" placeholder="Tên danh mục">
+                        <input type="text" class="form-control" name="name" required ng-maxlength="70" ng-model="groupProduct.Name" placeholder="Tên danh mục">
+                        <label class="control-label"><input type="checkbox" name="renameURL" ng-model="renameUrl" ng-checked="renameUrl" checked /> Thay đổi đường dẫn</label>
+                        <span ng-show="frmEditGroupProduct.name.$invalid" class="has-error">Phải nhập tên danh mục</span>
+                        <span ng-show="frmEditGroupProduct.name.$error.maxlength" class="has-error">Tên danh mục sản phẩm không vượt quá 70 ký tự</span>
+                     
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="description" ng-model="groupProduct.Description" placeholder="Nhập mô tả"></textarea>
+                        <textarea class="form-control" name="description" required ng-maxlength="256" ng-model="groupProduct.Description" placeholder="Nhập mô tả"></textarea>
+                        <span ng-show="frmEditGroupProduct.description.$invalid" class="has-error">Phải nhập mô tả danh mục</span>
+                        <span ng-show="frmEditGroupProduct.description.$error.maxlength" class="has-error">Mô tả danh mục sản phẩm không vượt quá 265 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nội dung</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="content" ng-model="groupProduct.Content" placeholder="Nhập nội dung"></textarea>
+                        <textarea class="form-control" name="content"   ckeditor="ckeditorOptions" ng-model="groupProduct.Content" placeholder="Nhập nội dung"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,14 +83,16 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="title" ng-model="groupProduct.Title" placeholder="Nhập Meta Title">
-                    </div>
+                        <input type="text" class="form-control" name="title" required ng-maxlength="70" ng-model="groupProduct.Title" placeholder="Nhập Meta Title">
+                        <span ng-show="frmEditGroupProduct.title.$invalid" class="has-error">Phải nhập tiêu đề SEO danh mục</span>
+                        <span ng-show="frmEditGroupProduct.title.$error.maxlength" class="has-error">Tiêu đề SEO danh mục không vượt quá 80 ký tự</span> </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="keyword" ng-model="groupProduct.Keyword" placeholder="Nhập từ khóa"></textarea>
-                    </div>
+                        <textarea class="form-control" name="keyword" required ng-model="groupProduct.Keyword" placeholder="Nhập từ khóa"></textarea>
+                        <span ng-show="frmEditGroupProduct.keyword.$invalid" class="has-error">Phải nhập từ khóa danh mục sản phẩm</span>
+ </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
@@ -108,7 +116,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-default" ui-sref="groupProduct">Hủy</button>
-                <button type="submit" class="btn btn-success pull-right">Lưu</button>
+                <button type="submit" ng-disabled="frmEditGroupProduct.$invalid" class="btn btn-success pull-right">Lưu</button>
             </div>
             <!-- /.box-footer -->
         </form>

@@ -7,17 +7,26 @@
             Active: true,
             Priority: false,
             idUser: '1',         
-            Level: '1'        
-           
-        }
-        $scope.GetTagSeo = GetTagSeo;
-        function GetTagSeo() {
-            $scope.groupProduct.Tag = commonService.getSeoTitle($scope.groupProduct.Name);
+            Level: '1'
 
         }
-
-        function getOrd() {
-            apiService.get('/api/GroupProduct/GetOrd', null, function (result) {
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+            height: '200px'
+        }
+        $scope.groupProduct.ParentID = $stateParams.id;
+        $scope.getOrdMenu = getOrdMenu;
+        function getOrdMenu(input) {
+            getOrd(input);
+        }
+        function getOrd(id) {
+            id = id || $stateParams.id;
+            var config = {
+                params:{
+                    id: id
+                }
+            }
+            apiService.get('/api/GroupProduct/GetOrd', config, function (result) {
                 $scope.groupProduct.Ord = result.data;
             });
         }
@@ -46,26 +55,31 @@
         };
         $scope.parentGroupProduct = [];
         $scope.flatFolders = [];
-        function loadParentGroupProduct() {
+        function loadParentGroupProduct() {   
             apiService.get('/api/GroupProduct/getallParent', null, function (result) {
                 $scope.parentGroupProduct = commonService.getTree(result.data, 'id', 'ParentID');
+
                 $scope.parentGroupProduct.forEach(function (item) {
                     recur(item, 0, $scope.flatFolders);
+                
                 });
  
             });
         }
         $scope.addGroupProduct = addGroupProduct;
         function addGroupProduct() {
+            $scope.groupProduct.Tag = commonService.getSeoTitle($scope.groupProduct.Name);
             apiService.post('/api/groupproduct/create', $scope.groupProduct, function (result)
             {
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới');
-                $state.go('groupProduct');
+                $state.go('groupProduct', { 'id': $scope.groupProduct.ParentID });
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công !');
             });
         }
-        getOrd(); GetTagSeo();
-        loadParentGroupProduct();
+        getOrd();
+
+        loadParentGroupProduct(); 
+
     }
 })(angular.module('thiepshop.groupProduct'));

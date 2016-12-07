@@ -18,7 +18,7 @@ namespace ThiepShop.Service
         Product Delete(int id);
         IEnumerable<Product> GetALL();
         IEnumerable<Product> GetAll(string Keyword);
-
+        IEnumerable<Product> GetAllById(int id);
         IEnumerable<Product> GetAllPaging(int page, int pageSize, out int totallRow);
         Product GetById(int id);
         IEnumerable<Product> GetAllByIdPaging(int idCate, int page, int pageSize, out int totallRow);
@@ -32,7 +32,7 @@ namespace ThiepShop.Service
         IUnitOfWork _unitOfWork;
         ITagsRepository _tagRepository;
         IProductTagsRepository _iProductTagsRepository;
-        public ProductService(IProductRepository productRepository,ITagsRepository tagRepository,IProductTagsRepository productTagRepository  ,IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, ITagsRepository tagRepository, IProductTagsRepository productTagRepository, IUnitOfWork unitOfWork)
         {
             this._productRepository = productRepository;
             this._tagRepository = _tagRepository;
@@ -43,27 +43,27 @@ namespace ThiepShop.Service
         {
             _productRepository.Add(product);
             _unitOfWork.Commit();
-            if(!string.IsNullOrEmpty(product.Tags))
+            if (!string.IsNullOrEmpty(product.Tags))
             {
                 string[] Tags = product.Tags.Split(',');
-                for(int i=0;i< Tags.Length;i++)
+                for (int i = 0; i < Tags.Length; i++)
                 {
                     var tagid = StringHelper.ToUnsignString(Tags[i]);
-                    if(_tagRepository.Count(x=>x.Name.Contains(Tags[i]))==0)
+                    if (_tagRepository.Count(x => x.Name.Contains(Tags[i])) == 0)
                     {
                         Tags tags = new Tags();
                         tags.Name = Tags[i];
                         tags.Type = CommonConstants.ProductType;
                         _tagRepository.Add(tags);
                     }
-                   
+
 
                     ProductTags productTags = new ProductTags();
                     productTags.idProduct = product.id;
                     productTags.idTags = tagid;
                     _iProductTagsRepository.Add(productTags);
                 }
-                
+
             }
         }
 
@@ -90,10 +90,10 @@ namespace ThiepShop.Service
 
         public IEnumerable<Product> GetAllByIdPaging(int idCate, int page, int pageSize, out int totallRow)
         {
-            return _productRepository.GetMultiPaging(x=>x.Active && x.idCate== idCate,out totallRow,page,pageSize,new string[] {"GroupProduct" });
-         }
+            return _productRepository.GetMultiPaging(x => x.Active && x.idCate == idCate, out totallRow, page, pageSize, new string[] { "GroupProduct" });
+        }
 
-        public IEnumerable<Product> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
             return _productRepository.GetAllByTag(tag, page, pageSize, out totalRow);
         }
@@ -105,7 +105,7 @@ namespace ThiepShop.Service
 
         public Product GetById(int id)
         {
-          return  _productRepository.GetSingleById(id);
+            return _productRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
@@ -146,6 +146,12 @@ namespace ThiepShop.Service
         public string GetOrd(int idCate)
         {
             return _productRepository.GetOrds(idCate);
+        }
+
+        public IEnumerable<Product> GetAllById(int id)
+        {
+
+            return _productRepository.GetAll().Where(p => p.idCate == id);
         }
     }
 }

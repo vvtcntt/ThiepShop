@@ -81,3 +81,5 @@ D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\Microsoft.AspNet.Identity.Owin.xml
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\Microsoft.Owin.Security.xml
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\CKFinder.dll
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Web\bin\CKFinder.pdb

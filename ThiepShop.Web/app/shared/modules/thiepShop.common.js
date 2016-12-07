@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('thiepshop.common', ['ui.router'])
+    angular.module('thiepshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor'])
 })();

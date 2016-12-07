@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using ThiepShop.Model.Model;
 using ThiepShop.Service;
 using ThiepShop.Web.Infrastructure.Core;
@@ -30,8 +31,12 @@ namespace ThiepShop.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var listGroupProduct = _groupProductService.GetAll(keyword).Where(p => p.ParentID == null); 
-                if(id>0)
+                var listGroupProduct = _groupProductService.GetAll(keyword).Where(p => p.ParentID == null);
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    listGroupProduct=_groupProductService.GetAll(keyword);
+                }
+                    if (id>0)
                 {
                     listGroupProduct = _groupProductService.GetAllByParentId(id);
                 }
@@ -52,7 +57,7 @@ namespace ThiepShop.Web.Api
 
         [Route("getallParent")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -125,8 +130,8 @@ namespace ThiepShop.Web.Api
             });
         }
         [Route("updateMenu")]
-        [HttpPut]
-        public HttpResponseMessage updateMenu(HttpRequestMessage request, GroupProductViewModel groupProductVm)
+        [HttpGet]
+        public HttpResponseMessage updateMenu(HttpRequestMessage request,int id,int idParent)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -137,21 +142,68 @@ namespace ThiepShop.Web.Api
                 }
                 else
                 {
-                    var newGroupProduct = _groupProductService.GetById(groupProductVm.id);
-                    newGroupProduct.UpdateGroupProduct(groupProductVm);
-                    newGroupProduct.DateCreate = DateTime.Now;
+                    var newGroupProduct = _groupProductService.GetById(id);
+                    newGroupProduct.ParentID = idParent;
+                    if (idParent == 0)
+                        newGroupProduct.ParentID = null;
 
                     _groupProductService.Update(newGroupProduct);
                     _groupProductService.Save();
-                    var responseData = Mapper.Map<GroupProduct, GroupProductViewModel>(newGroupProduct);
-                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                     response = request.CreateResponse(HttpStatusCode.OK, newGroupProduct);
+                   
+                    return response;
+                }
+                return response;
+            });
+        }
+        [Route("updateMutil")]
+        [HttpGet]
+        public HttpResponseMessage updateMutil(HttpRequestMessage request, int id, bool? active=null,bool? priority=null, int? ord=null)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newGroupProduct = _groupProductService.GetById(id);
+                    if (active != null )
+                    {
+                        if (active == true)
+                            newGroupProduct.Active = false;
+                        else
+                            newGroupProduct.Active = true;
+                    }
+                       
+                    if (priority != null)
+                    {
+                        if (priority == true)
+                            newGroupProduct.Priority = false;
+                        else
+                            newGroupProduct.Priority = true;
+                    }
+                    if (ord != null)
+                    {
+                        newGroupProduct.Ord =int.Parse(ord.ToString());
+                    }
+                       
+                    _groupProductService.Update(newGroupProduct);
+                    _groupProductService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, newGroupProduct);
+
+                    return response;
+                    //Bqanj ơi, mình hết giờ giờ công ty đống cửa. Cám ơn bạn nhé. Mọi người chờ đóng cửa, mai chiến tiếp. Thanks bạn nhiều nhé
+                    //ok để tý về mình lục lại đống code xem. l aâku rồi ko làm angular
                 }
                 return response;
             });
         }
         [Route("GetOrd")]
         [HttpGet]
-        public HttpResponseMessage GetOrd(HttpRequestMessage request)
+        public HttpResponseMessage GetOrd(HttpRequestMessage request,string id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -162,8 +214,55 @@ namespace ThiepShop.Web.Api
                 }
                 else
                 {
-                    response = request.CreateResponse(HttpStatusCode.Created, _groupProductService.GetOrd());
+                    response = request.CreateResponse(HttpStatusCode.Created, _groupProductService.GetOrd(id));
 
+                }
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldGroupProduct = _groupProductService.Delete(id);
+                    _groupProductService.Save();
+                    var responseData = Mapper.Map<GroupProduct, GroupProductViewModel>(oldGroupProduct);
+                    response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                }
+                return response;
+            });
+        }
+        [Route("deletemuilti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedGroupProduct)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listGroupProduct = new JavaScriptSerializer().Deserialize<List<int>>(checkedGroupProduct);
+                    foreach (var item in listGroupProduct)
+                    {
+                        _groupProductService.Delete(item);
+                    }
+
+                    _groupProductService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, listGroupProduct.Count);
                 }
                 return response;
             });

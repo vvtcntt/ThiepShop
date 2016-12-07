@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li><a ui-sref="groupProduct">Danh mục sản phẩm</a></li>
-        <li class="active">Thêm mới sản phẩm</li>
+        <li class="active">Thêm mới danh mục sản phẩm</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -18,36 +18,42 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" name="frmAddGroupProduct" role="form" ng-submit="addGroupProduct()">
+        <form class="form-horizontal" novalidate name="frmAddGroupProduct" role="form" ng-submit="addGroupProduct()">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Danh mục cha</label>
-                    <div class="col-sm-6">
-                        <select type="text" name="ParentID" class="form-control" ng-model="groupProduct.ParentID">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Danh mục cha {{groupProduct.ParentID}}</label>
+                     <div class="col-sm-10">                       
+                        <select name="ParentID" ng-change="getOrdMenu(groupProduct.ParentID)" class="form-control" ng-model="groupProduct.ParentID">
                             <option value="">-- Chọn chuyên mục cha --</option>
                             <option ng-repeat="item in flatFolders" ng-value="{{item.id }}" value="{{item.id }}">
                                 {{ item.indent }} {{ item.name }}
                             </option>
-                        </select>
+                        </select>  
+                                         
                     </div>
                     <input name="ParentID" type="hidden" ng-model="groupProduct.ParentID" />
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" ng-model="groupProduct.Name" placeholder="Tên danh mục">
+                        <input type="text" required class="form-control" ng-maxlength="70" name="name" ng-model="groupProduct.Name" placeholder="Tên danh mục">
+                        <span ng-show="frmAddGroupProduct.name.$invalid" class="has-error">Phải nhập tên danh mục</span>
+                        <span ng-show="frmAddGroupProduct.name.$error.maxlength" class="has-error">Tên danh mục sản phẩm không vượt quá 70 ký tự</span>
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                    <textarea class="form-control" name="description"  ng-model="groupProduct.Description" placeholder="Nhập mô tả" ></textarea>
+                    <textarea class="form-control" name="description" required ng-maxlength="256"  ng-model="groupProduct.Description" placeholder="Nhập mô tả" ></textarea>
+                        <span ng-show="frmAddGroupProduct.description.$invalid" class="has-error">Phải nhập mô tả danh mục</span>
+                         <span ng-show="frmAddGroupProduct.description.$error.maxlength" class="has-error">Mô tả danh mục sản phẩm không vượt quá 265 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nội dung</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="content" ng-model="groupProduct.Content" placeholder="Nhập nội dung"></textarea>
+                        <textarea class="form-control" name="content" ckeditor="ckeditorOptions" ng-model="groupProduct.Content" placeholder="Nhập nội dung"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,14 +83,17 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="title" ng-model="groupProduct.Title" placeholder="Nhập Meta Title">
-                    </div>
+                        <input type="text" class="form-control" name="title" required ng-maxlength="70" ng-re ng-model="groupProduct.Title" placeholder="Nhập Meta Title">
+                        <span ng-show="frmAddGroupProduct.title.$invalid" class="has-error">Phải nhập tiêu đề SEO danh mục</span>
+                        <span ng-show="frmAddGroupProduct.title.$error.maxlength" class="has-error">Tiêu đề SEO danh mục không vượt quá 80 ký tự</span>
+                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="keyword" ng-model="groupProduct.Keyword" placeholder="Nhập từ khóa"></textarea>
-                    </div>
+                        <span ng-show="frmAddGroupProduct.keyword.$invalid" class="has-error">Phải nhập từ khóa danh mục sản phẩm</span>
+                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
@@ -108,7 +117,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-default" ui-sref="groupProduct" >Hủy</button>
-                <button type="submit" class="btn btn-success pull-right">Lưu</button>
+                <button type="submit" ng-disabled="frmAddGroupProduct.$invalid"  class="btn btn-success pull-right">Lưu</button>
             </div>
             <!-- /.box-footer -->
         </form>

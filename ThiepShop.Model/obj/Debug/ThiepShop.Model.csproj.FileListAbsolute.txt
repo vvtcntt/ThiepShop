@@ -11,3 +11,4 @@ D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Model\bin\Debug\Microsoft.AspNet.Identity.
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Model\obj\Debug\ThiepShop.Model.csprojResolveAssemblyReference.cache

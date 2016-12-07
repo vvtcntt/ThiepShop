@@ -18,7 +18,7 @@ namespace ThiepShop.Service
         IEnumerable<GroupProduct> GetAllByParentId(int parentId);
         GroupProduct GetById(int id);
         void UpdateParentID( int id);
-        string GetOrd();
+        string GetOrd(string id);
         IEnumerable<GroupProduct> GetAll(string Keyword);
         IEnumerable<GroupProduct> GetAll(int id);
 
@@ -98,9 +98,10 @@ namespace ThiepShop.Service
  
         }
 
-        string IGroupProductService.GetOrd()
+        string IGroupProductService.GetOrd(string id)
         {
-            return _groupProductRepository.Getords();
+            
+            return _groupProductRepository.Getords(id);
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿<section class="content-header">
     <h1>
-       Danh mục sản phẩm
+        Danh sách sản phẩm
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-         <li class="active">Danh mục sản phẩm</li>
+        <li class="active">Danh sách sản phẩm</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -12,7 +12,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
+            <h3 class="box-title">Danh sách sản phẩm</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
@@ -23,13 +23,93 @@
             </div>
         </div>
         <div class="box-body">
-            Start creating your amazing application!
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" ng-change="getProduct()" placeholder="Tìm kiếm...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" ng-click="getProduct()" type="button">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <button class="btn btn-danger pull-right" ng-click="deleteMultiple()" id="btnDelete" disabled style="margin:0px 10px">Xóa</button>
+
+                    <button class="btn btn-success pull-right" ui-sref="product_add()"><i class="glyphicon glyphicon-plus-sign" style="margin-right:10px"></i>    Thêm mới</button>
+                </div>
+            </div>
+            <div class="box-header with-border">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 5%"><input name="all" type="checkbox" ng-click="selectAll()" /></th>
+                            <th style="width: 9%">Ảnh</th>
+                            <th style="width: 8%">Tên sản phẩm</th>
+                            <th style="width: 15%">Tên sản phẩm</th>
+                            <th style="width: 15%">Nhóm cha</th>
+                            <th style="width: 10%">Giá niêm yết</th>
+                            <th style="width: 10%">Giá khuyến mại</th>
+                            <th style="width: 4%">Hiển thị</th>
+                            <th style="width: 4%">Trang chủ</th>
+                            <th style="width: 6%">STT</th>
+                            <th style="width: 10%">Thao tác</th>
+                        </tr>
+                        <tr ng-repeat="item in product" ng-style="item.Active === true ? {opacity:'1' } : { opacity:'0.3'}">
+                            <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                            <td>
+                                <a ui-sref="product_edit({id:item.id})" title="{{item.Name}}"><img style="max-width:95%; max-height:100px; margin:auto; display:block" src="{{item.ImageLinkThumb}}" alt="{{item.Name}}" /></a>  
+                            </td>
+                            <td>
+                                <input  ng-change="updateMutil(item.id,item.Code,null,null,null,item.Price,null)"  type="text" name="code" ng-model="item.Code" class="form-control" />
+                            </td>
+                            <td>
+                                <a ui-sref="product_edit({id:item.id})" title="{{item.Name}}">{{item.Name}}</a>
+                            </td>                       
+                            <td>
+                                <select type="text" name="ParentID" class="form-control" ng-model="item.idCate" ng-change="changeMenu(item.id,item.idCate)">
+                                    <option value="">-- Danh mục cha --</option>
+                                    <option ng-repeat="item in flatFolders" ng-value="{{item.id }}" value="{{item.id }}">
+                                        {{item.indent}} {{item.name}}
+                                    </option>
+                                </select>
+                                <input name="ParentID" type="hidden" ng-model="item.idCate" />
+                            </td>
+
+                            <td style="text-align:center">
+                                <input ng-change="updateMutil(item.id,null,null,null,null,item.Price,null)" type="text" name="price" class="form-control" ng-model="item.Price" />
+                            </td>
+                            <td style="text-align:center">
+                                <input type="text" name="priceSale" ng-change="updateMutil(item.id,null,null,null,null,item.PriceSale)" class="form-control" ng-model="item.PriceSale" />
+                            </td>
+                            <td style="text-align:center">
+                                <span ng-click="updateMutil(item.id,null,item.Active,null,null,null,null)" ng-style="item.Active === true ? {color:'green',cursor: 'pointer',top:'5px' } : { color:'black',cursor: 'pointer',top:'5px'}" class="glyphicon glyphicon-ok"></span>
+                            </td>
+                            <td style="text-align:center">
+                                <span ng-click="updateMutil(item.id,null,null,item.ViewHomes,null,null,null)" ng-style="item.ViewHomes === true ? {color:'green',cursor: 'pointer',top:'5px' } : { color:'black',cursor: 'pointer',top:'5px'}" class="glyphicon glyphicon-ok"></span>
+                            </td>
+                            <td>
+                                <input ng-change="updateMutil(item.id,null,null,null,item.Ord,null,null)" type="text" class="form-control" ng-model="item.Ord" />
+                            </td>
+                            <td class="btn-lg text-center">
+                                <a ui-sref="product_edit({id:item.id})" title="{{item.Name}}"><i class="glyphicon glyphicon-edit"></i></a>
+
+                                <a ng-click="deleteProduct(item.id,item.Name)" title="" style="color:black"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7"><span class="pull-right">Trang : {{page+1}} - Tổng số bản ghi : {{totalCount}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- /.box-body -->
         <div class="box-footer">
-            Footer
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getGroupProduct(page)"></pager-directive>
         </div>
-        <!-- /.box-footer-->
     </div>
     <!-- /.box -->
 </section>

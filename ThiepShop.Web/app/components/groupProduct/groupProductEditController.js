@@ -10,6 +10,11 @@
             Level: '1'
 
         }
+        $scope.renameUrl = false;
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+            height: '200px'
+        }
         //Load chi tiết
         function loadGroupProductDetail()
         {
@@ -67,9 +72,13 @@
         }
         $scope.updateGroupProduct = updateGroupProduct;
         function updateGroupProduct() {
+            if ($scope.renameUrl == true)
+            {
+                $scope.groupProduct.Tag = commonService.getSeoTitle($scope.groupProduct.Name);
+            }
             apiService.put('/api/groupproduct/update', $scope.groupProduct, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được cập nhật thành công');
-                $state.go('groupProduct');
+                $state.go('groupProduct', { 'id': $scope.groupProduct.ParentID});
             }, function (error) {
                 notificationService.displayError('Cập nhật không thành công !');
             });
