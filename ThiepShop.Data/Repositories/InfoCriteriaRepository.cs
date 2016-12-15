@@ -8,9 +8,20 @@ using System.Threading.Tasks;
 
 namespace ThiepShop.Data.Repositories
 {
-    public interface IInfoCriteriaRepository : IRepository<InfoCriteria> { }
-   public class InfoCriteriaRepository:RepositoryBase<InfoCriteria>
+    public interface IInfoCriteriaRepository : IRepository<InfoCriteria>
     {
-        public InfoCriteriaRepository(IDbFactory dbFactory) : base(dbFactory) { }
+        int Getords();
+    }
+    public class InfoCriteriaRepository : RepositoryBase<InfoCriteria>, IInfoCriteriaRepository
+    {
+        public InfoCriteriaRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+
+        }
+        public int Getords()
+        {
+            return int.Parse(this.DbContext.InfoCriterias.Where(p => p.Active == true).DefaultIfEmpty().Max(r => r == null ? 0 : r.Ord + 1).ToString());
+
+        }
     }
 }

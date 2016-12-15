@@ -15,6 +15,7 @@ using ThiepShop.Web.Models;
 namespace ThiepShop.Web.Api
 {
     [RoutePrefix("api/products")]
+    [Authorize]
 
     public class ProductController :  ApiControllerBase
     {

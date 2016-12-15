@@ -16,7 +16,8 @@ namespace ThiepShop.Web.Mappings
             {
                 cfg.CreateMap<GroupProduct, GroupProductViewModel>().MaxDepth(2);
                 cfg.CreateMap<Product, ProductViewModel>().MaxDepth(2);
-
+                cfg.CreateMap<Criteria, CriteriaViewModel>().MaxDepth(2);
+                cfg.CreateMap<InfoCriteria, InfoCriteriaViewModel>().MaxDepth(2);
             });
         }
     }

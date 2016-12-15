@@ -81,6 +81,7 @@
     <Compile Include="Model\Files.cs" />
     <Compile Include="Model\GroupAgency.cs" />
     <Compile Include="Model\GroupChild.cs" />
+    <Compile Include="Model\GroupCriteria.cs" />
     <Compile Include="Model\GroupImage.cs" />
     <Compile Include="Model\GroupNews.cs" />
     <Compile Include="Model\GroupProduct.cs" />

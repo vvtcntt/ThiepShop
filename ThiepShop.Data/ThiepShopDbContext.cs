@@ -72,6 +72,8 @@ namespace ThiepShop.Data
         public DbSet<Error> Errors { set; get; }
         public DbSet<ProductTags> ProductTags { set; get; }
         public DbSet<Tags> Tags { set; get; }
+        public DbSet<GroupCriteria> GroupCriterias { set; get; }
+
         public static ThiepShopDbContext Create()
         {
             return new ThiepShopDbContext();

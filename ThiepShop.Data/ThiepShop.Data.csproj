@@ -76,6 +76,26 @@
     <Compile Include="Migrations\201611190902024_Changekey.Designer.cs">
       <DependentUpon>201611190902024_Changekey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612120925296_udpdatecriteria.cs" />
+    <Compile Include="Migrations\201612120925296_udpdatecriteria.Designer.cs">
+      <DependentUpon>201612120925296_udpdatecriteria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612130835257_updateInfoCriteria.cs" />
+    <Compile Include="Migrations\201612130835257_updateInfoCriteria.Designer.cs">
+      <DependentUpon>201612130835257_updateInfoCriteria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612140738027_updatecriteria.cs" />
+    <Compile Include="Migrations\201612140738027_updatecriteria.Designer.cs">
+      <DependentUpon>201612140738027_updatecriteria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612140741580_updatecriteria1.cs" />
+    <Compile Include="Migrations\201612140741580_updatecriteria1.Designer.cs">
+      <DependentUpon>201612140741580_updatecriteria1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612140814052_updatecriteria2.cs" />
+    <Compile Include="Migrations\201612140814052_updatecriteria2.Designer.cs">
+      <DependentUpon>201612140814052_updatecriteria2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AgencyRepository.cs" />
@@ -98,6 +118,7 @@
     <Compile Include="Repositories\FilesRepository.cs" />
     <Compile Include="Repositories\GroupAgencyRepository.cs" />
     <Compile Include="Repositories\GroupChildRepository.cs" />
+    <Compile Include="Repositories\GroupCriteriaRepository.cs" />
     <Compile Include="Repositories\GroupImageRepository.cs" />
     <Compile Include="Repositories\GroupNewsRepository.cs" />
     <Compile Include="Repositories\GroupProductRepository.cs" />
@@ -152,6 +173,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611190902024_Changekey.resx">
       <DependentUpon>201611190902024_Changekey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612120925296_udpdatecriteria.resx">
+      <DependentUpon>201612120925296_udpdatecriteria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612130835257_updateInfoCriteria.resx">
+      <DependentUpon>201612130835257_updateInfoCriteria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612140738027_updatecriteria.resx">
+      <DependentUpon>201612140738027_updatecriteria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612140741580_updatecriteria1.resx">
+      <DependentUpon>201612140741580_updatecriteria1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612140814052_updatecriteria2.resx">
+      <DependentUpon>201612140814052_updatecriteria2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

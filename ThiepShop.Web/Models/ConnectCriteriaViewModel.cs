@@ -12,7 +12,7 @@ namespace ThiepShop.Web.Models
         public int idCre { set; get; }
 
  
-        public virtual CritetiaViewModel Criterias { set; get; }
+        public virtual CriteriaViewModel Criterias { set; get; }
 
         public int idpd { set; get; }
  

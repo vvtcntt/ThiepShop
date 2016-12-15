@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace ThiepShop.Data.Repositories
 {
-    public interface ICriteriaRepository : IRepository<Criteria> { }
+    public interface ICriteriaRepository : IRepository<Criteria> {
+        int Getords();
+    }
     public class CriteriaRepository:RepositoryBase<Criteria>, ICriteriaRepository
     {
         public CriteriaRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+
+        }
+        public int Getords()
+        {
+                return int.Parse(this.DbContext.Criterias.Where(p => p.Active == true).DefaultIfEmpty().Max(r => r == null ? 0 : r.Ord + 1).ToString());
 
         }
     }

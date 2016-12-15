@@ -20,3 +20,8 @@ D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\bin\Debug\Microsoft.AspNet.Identity.C
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.ASPNetIdentity.resources
 D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.Changekey.resources
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.udpdatecriteria.resources
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.updateInfoCriteria.resources
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.updatecriteria.resources
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.updatecriteria1.resources
+D:\Data\MVC\CodeWeb\CMS\Git\ThiepShop.Data\obj\Debug\ThiepShop.Data.Migrations.updatecriteria2.resources

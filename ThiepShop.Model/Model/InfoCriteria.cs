@@ -16,11 +16,9 @@ namespace ThiepShop.Model.Model
         [MaxLength(200)]
         public string Name { set; get; }
 
-        [Required]
-        [MaxLength(200)]
         public string Url { set; get; }
 
-        public int type { set; get; }
+        public int? type { set; get; }
         public int Ord { set; get; }
         public bool Active { set; get; }
     }

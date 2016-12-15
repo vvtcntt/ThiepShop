@@ -15,6 +15,7 @@ using ThiepShop.Web.Models;
 namespace ThiepShop.Web.Api
 {
     [RoutePrefix("api/groupproduct")]
+    [Authorize]
     public class GroupProductController : ApiControllerBase
     {
         private IGroupProductService _groupProductService;

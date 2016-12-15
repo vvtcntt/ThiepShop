@@ -81,7 +81,7 @@ namespace ThiepShop.Web.Infrastructure.Extentions
         }
          
 
-        public static void UpdateCriteria(this Criteria criteria, CritetiaViewModel critetiaViewModel)
+        public static void UpdateCriteria(this Criteria criteria, CriteriaViewModel critetiaViewModel)
         {
 
             criteria.id = critetiaViewModel.id;
@@ -93,10 +93,22 @@ namespace ThiepShop.Web.Infrastructure.Extentions
             criteria.idCate = critetiaViewModel.idCate;
             criteria.Priority = critetiaViewModel.Priority;
             criteria.Style = critetiaViewModel.Style;
-           
-
-
 
         }
-}
+        public static void UpdateInfoCriteria(this InfoCriteria infoCriteria, InfoCriteriaViewModel infoCritetiaViewModel)
+        {
+
+            infoCriteria.id = infoCritetiaViewModel.id;
+            infoCriteria.idCri = infoCritetiaViewModel.idCri;
+
+            infoCriteria.Name = infoCritetiaViewModel.Name;
+            infoCriteria.Url = infoCritetiaViewModel.Url;
+            infoCriteria.Active = infoCritetiaViewModel.Active;
+            infoCriteria.type = infoCritetiaViewModel.type;
+            infoCriteria.Ord = infoCritetiaViewModel.Ord;
+
+           
+
+        }
+    }
 }
